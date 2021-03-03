@@ -41,6 +41,10 @@ let map = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
+function checkMap(){
+    console.table(map);
+}
+
 function MapGen(){
     for (let i = 0; i < totalEntityCount; i++)
     {
@@ -106,4 +110,4 @@ function MapGen(){
     }
 };
 
-export {MapGen};
+export {MapGen, checkMap};

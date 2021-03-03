@@ -1,4 +1,5 @@
 import * as utils from "./utilities.js";
+import * as data from "./data.js";
 
 let ctx, canvas;
 const canvasWidth = 600, canvasHeight = 400;
@@ -19,6 +20,9 @@ function init(){
 	submit = document.querySelector("#submit");
 	
 	submit.onclick = updateUI;
+	
+	data.MapGen();
+	data.checkMap();
 }
 
 // Update the output window with the user input
