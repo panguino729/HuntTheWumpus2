@@ -46,19 +46,21 @@ function checkMap(){
 }
 
 function MapGen(){
-    for (let i = 0; i < totalEntityCount; i++)
+    for (let i = 0; i < maxEntityCount; i++)
     {
-        randMapX = Math.random(0,mapX);
-        randMapY = Math.random(0,mapY);
-        if(map[randMapX,randMapY] != 0 && totalEntityCount < maxEntityCount)
+        // Get random int between (0 - mapX/mapY)
+        let randMapX = Math.floor(Math.random() * (mapX - 0)) + 0;
+        let randMapY = Math.floor(Math.random() * (mapY - 0)) + 0;
+        // map[row][column] so Y first than X
+        if (map[randMapY][randMapX] != 0 && totalEntityCount < maxEntityCount)
         {
             i--;
         }
-        else if(map[randMapX,randMapY] == 0 && totalEntityCount < maxEntityCount)
+        else if(map[randMapY][randMapX] == 0 && totalEntityCount < maxEntityCount)
         {
             if(playerSpawnCount < playerSpawnMax)
             {
-                map[randMapX,randMapY] = 1;
+                map[randMapY][randMapX] = 1;
                 playerSpawnCount++;
                 totalEntityCount++;
             }
@@ -66,7 +68,7 @@ function MapGen(){
             {
                 if(wumpusSpawnCount < wumpusSpawnMax)
                 {
-                    map[randMapX,randMapY] = 2;
+                    map[randMapY][randMapX] = 2;
                     wumpusSpawnCount++;
                     totalEntityCount++;
                 }
@@ -74,7 +76,7 @@ function MapGen(){
                 {
                     if(treasureSpawnCount < treasureSpawnMax)
                     {
-                        map[randMapX,randMapY] = 3;
+                        map[randMapY][randMapX] = 3;
                         treasureSpawnCount++;
                         totalEntityCount++;
                     }
@@ -82,7 +84,7 @@ function MapGen(){
                     {
                         if(pitSpawnCount < pitSpawnMax)
                         {
-                            map[randMapX,randMapY] = 4;
+                            map[randMapY][randMapX] = 4;
                             pitSpawnCount++;
                             totalEntityCount++;
                         }
@@ -90,7 +92,7 @@ function MapGen(){
                         {
                             if(batSpawnCount < batSpawnMax)
                             {
-                                map[randMapX,randMapY] = 5;
+                                map[randMapY][randMapX] = 5;
                                 batSpawnCount++;
                                 totalEntityCount++;
                             }
