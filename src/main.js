@@ -23,6 +23,8 @@ function init(){
 	
 	submit.onclick = update;
 	
+	outputWindow.innerHTML = utils.updateUI(`Welcome to Hunt the Wumpus! You are the green circle. Navigate through the cave by typing directions ("right", "left", "up", "down") into the text field below then pressing enter. Escape the cave with the treasure while avoiding the Wumpus.`, outputWindow.innerHTML);
+	
 	data.MapGen();
 	utils.drawGrid(ctx, data.map, data.player);
 	data.checkMap();

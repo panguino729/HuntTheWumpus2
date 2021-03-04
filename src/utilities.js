@@ -73,9 +73,10 @@ function checkProximity(map, player){
 	}
 }
 
-// Takes in new string to concat to previous
+// Takes in new string to concat to previous, used for Game Text
 function updateUI(output, previous){
-	let result = `${output}<br/>${previous}`
+	let str = output.fontcolor("red");
+	let result = `${str}<br/>${previous}`
 	return result;
 }
 
