@@ -7,6 +7,28 @@
 // 4 = Pit
 // 5 = Bat
 
+class Player{
+    constructor(x, y){
+        this._x = x;
+        this._y = y;
+    }
+    
+    get x(){
+        return this._x;
+    }
+    get y(){
+        return this._y;
+    }
+    set x(value){
+        value = parseInt(value);
+        if (value >= 0) this._x = value;
+    }
+    set y(value){
+        value = parseInt(value);
+        if (value >= 0) this._y = value; 
+    }
+}
+
 let playerSpawnCount = 0;
 const playerSpawnMax = 1;
 
@@ -41,6 +63,8 @@ let map = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ];
 
+let player;
+
 function checkMap(){
     console.table(map);
 }
@@ -58,14 +82,17 @@ function MapGen(){
         }
         else if(map[randMapY][randMapX] == 0 && totalEntityCount < maxEntityCount)
         {
+            // Player
             if(playerSpawnCount < playerSpawnMax)
             {
                 map[randMapY][randMapX] = 1;
                 playerSpawnCount++;
                 totalEntityCount++;
+                player = new Player(randMapX, randMapY);
             }
             else
             {
+                // Wumpus
                 if(wumpusSpawnCount < wumpusSpawnMax)
                 {
                     map[randMapY][randMapX] = 2;
@@ -74,6 +101,7 @@ function MapGen(){
                 }
                 else
                 {
+                    // Treasure
                     if(treasureSpawnCount < treasureSpawnMax)
                     {
                         map[randMapY][randMapX] = 3;
@@ -82,6 +110,7 @@ function MapGen(){
                     }
                     else
                     {
+                        // Pit
                         if(pitSpawnCount < pitSpawnMax)
                         {
                             map[randMapY][randMapX] = 4;
@@ -90,6 +119,7 @@ function MapGen(){
                         }
                         else
                         {
+                            // Bats
                             if(batSpawnCount < batSpawnMax)
                             {
                                 map[randMapY][randMapX] = 5;
@@ -112,4 +142,4 @@ function MapGen(){
     }
 };
 
-export {MapGen, checkMap};
+export {MapGen, checkMap, mapX, mapY, map, player};

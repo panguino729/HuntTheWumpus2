@@ -8,8 +8,124 @@ function validateInput(input){
 	}
 }
 
+function checkInput(input){
+	if (input.search("right") != -1){
+		return 0;
+	}
+	else if (input.search("left") != -1){
+		return 1;
+	}
+	else if (input.search("up") != -1){
+		return 2;
+	}
+	else if (input.search("down") != -1){
+		return 3;
+	}
+}
+
+function checkMovement(map, player, direction){
+	let mapX = map[0].length;
+	let mapY = map.length;
+	
+	switch (direction){
+		// Right
+		case 0:
+			if (player.x + 1 >= mapX){
+				return false;
+			}
+			else return true;
+			break;
+		// Left
+		case 1:
+			if (player.x - 1 < 0){
+				return false;
+			}
+			else return true;
+			break;
+		// Up
+		case 2:
+			if (player.y - 1 < 0){
+				return false;
+			}
+			else return true;
+			break;
+		// Down
+		case 3:
+			if (player.y + 1 >= mapY){
+				return false;
+			}
+			else return true;
+			break;
+		default:
+			return true;
+			break;
+	}
+}
+
 function updateUI(output, previous){
 	output = `${output}<br/>${previous}`
 }
 
-export {validateInput, updateUI};
+function drawGrid(ctx, map, player){
+	let mapX = map[0].length;
+	let mapY = map.length;
+	// row
+	for (let i = 0; i < mapY; i++){
+		// column
+		for (let j = 0; j < mapX; j++){
+			// Player
+			if (map[i][j] == 1){
+				drawRect(ctx, j * 40, i * 40, 40, 40, "white");
+			}
+			// Wumpus
+			else if (map[i][j] == 2){
+				drawRect(ctx, j * 40, i * 40, 40, 40, "red");
+			}
+			// Treasure
+			else if (map[i][j] == 3){
+				drawRect(ctx, j * 40, i * 40, 40, 40, "yellow");
+			}
+			// Pit
+			else if (map[i][j] == 4){
+				drawRect(ctx, j * 40, i * 40, 40, 40, "blue");
+			}
+			// Bats
+			else if (map[i][j] == 5){
+				drawRect(ctx, j * 40, i * 40, 40, 40, "purple");
+			}
+			else{
+				drawRect(ctx, j * 40, i * 40, 40, 40, "black");
+			}
+		}
+	}
+	
+	drawCircle(ctx, player.x * 40, player.y * 40);
+}
+
+function drawRect(ctx, x, y, width = 40, height = 40, color = "black", strokeStyle = "none"){
+	ctx.save();
+	ctx.fillStyle = color;
+	ctx.beginPath();
+	ctx.rect(x, y, width, height);
+	ctx.fill();
+	if (strokeStyle != "none"){
+		ctx.strokeStyle = strokeStyle;
+		ctx.lineWidth = 2;
+		ctx.stroke();
+	}
+	ctx.closePath();
+	ctx.restore();
+}
+		
+function drawCircle(ctx, x, y, radius = 20, startAngle = 0, endAngle = Math.PI * 2, fillStyle = "green"){
+	ctx.save();
+	ctx.fillStyle = fillStyle;
+	ctx.translate(x, y);
+	ctx.beginPath();
+	ctx.arc(0 + radius, 0 + radius, radius, startAngle, endAngle, false);
+	ctx.fill();
+	ctx.closePath();
+	ctx.restore();
+}
+
+export {validateInput, updateUI, drawGrid, checkInput, checkMovement};
