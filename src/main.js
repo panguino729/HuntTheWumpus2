@@ -31,11 +31,13 @@ function init(){
 function update(){
 	updateUI();
 	
+	// Player movement
 	switch (direction) {
+		// Right
 		case 0:
 			if (utils.checkMovement(data.map, data.player, 0)){
 				data.player.x++;
-				data.map[data.player.y][data.player.x] = 1;
+				if (data.map[data.player.y][data.player.x] == 0) data.map[data.player.y][data.player.x] = 1;
 				utils.drawGrid(ctx, data.map, data.player);
 			}
 			else {
@@ -44,10 +46,12 @@ function update(){
 				outputWindow.innerHTML = `${result}<br/>${outputWindow.innerHTML}`
 			}
 			break;
+		// Left
 		case 1:
 			if (utils.checkMovement(data.map, data.player, 1)){
 				data.player.x--;
-				data.map[data.player.y][data.player.x] = 1;
+				if (data.map[data.player.y][data.player.x] == 0) data.map[data.player.y][data.player.x] = 1;
+
 				utils.drawGrid(ctx, data.map, data.player);
 			}
 			else {
@@ -56,10 +60,12 @@ function update(){
 				outputWindow.innerHTML = `${result}<br/>${outputWindow.innerHTML}`
 			}
 			break;
+		// Up
 		case 2:
 			if (utils.checkMovement(data.map, data.player, 2)){
 				data.player.y--;
-				data.map[data.player.y][data.player.x] = 1;
+				if (data.map[data.player.y][data.player.x] == 0) data.map[data.player.y][data.player.x] = 1;
+
 				utils.drawGrid(ctx, data.map, data.player);
 			}
 			else {
@@ -68,10 +74,11 @@ function update(){
 				outputWindow.innerHTML = `${result}<br/>${outputWindow.innerHTML}`
 			}
 			break;
+		// Down
 		case 3:
 			if (utils.checkMovement(data.map, data.player, 3)){
 				data.player.y++;
-				data.map[data.player.y][data.player.x] = 1;
+				if (data.map[data.player.y][data.player.x] == 0) data.map[data.player.y][data.player.x] = 1;
 				utils.drawGrid(ctx, data.map, data.player);
 			}
 			else {

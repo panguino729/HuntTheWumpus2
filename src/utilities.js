@@ -8,6 +8,7 @@ function validateInput(input){
 	}
 }
 
+// Checks what word the user enters
 function checkInput(input){
 	if (input.search("right") != -1){
 		return 0;
@@ -23,6 +24,7 @@ function checkInput(input){
 	}
 }
 
+// Checks if the player movement is valid (won't fall off the map)
 function checkMovement(map, player, direction){
 	let mapX = map[0].length;
 	let mapY = map.length;
@@ -62,10 +64,22 @@ function checkMovement(map, player, direction){
 	}
 }
 
-function updateUI(output, previous){
-	output = `${output}<br/>${previous}`
+// This is only checking within 1 block, needs to be changed to 2
+function checkProximity(map, player){
+	let proximity = [];
+	// NW
+	if (player.x - 1 > 0 && player.y - 1 > 0){
+		proximity.push(map[player.y][player.x - 1]);
+	}
 }
 
+// Takes in new string to concat to previous
+function updateUI(output, previous){
+	let result = `${output}<br/>${previous}`
+	return result;
+}
+
+// Draw the grid based on generated map
 function drawGrid(ctx, map, player){
 	let mapX = map[0].length;
 	let mapY = map.length;
@@ -128,4 +142,4 @@ function drawCircle(ctx, x, y, radius = 20, startAngle = 0, endAngle = Math.PI *
 	ctx.restore();
 }
 
-export {validateInput, updateUI, drawGrid, checkInput, checkMovement};
+export {validateInput, updateUI, drawGrid, checkInput, checkMovement, checkProximity};

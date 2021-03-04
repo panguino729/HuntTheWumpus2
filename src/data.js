@@ -1,3 +1,5 @@
+import * as classes from "./classes.js";
+
 // Holds all of the arrays and constant data needed for the game to run
 // -- Level Key --
 // 0 = Nothing
@@ -6,28 +8,6 @@
 // 3 = Treasure
 // 4 = Pit
 // 5 = Bat
-
-class Player{
-    constructor(x, y){
-        this._x = x;
-        this._y = y;
-    }
-    
-    get x(){
-        return this._x;
-    }
-    get y(){
-        return this._y;
-    }
-    set x(value){
-        value = parseInt(value);
-        if (value >= 0) this._x = value;
-    }
-    set y(value){
-        value = parseInt(value);
-        if (value >= 0) this._y = value; 
-    }
-}
 
 let playerSpawnCount = 0;
 const playerSpawnMax = 1;
@@ -65,6 +45,7 @@ let map = [
 
 let player;
 
+// Debug funtion - prints map to console
 function checkMap(){
     console.table(map);
 }
@@ -88,7 +69,7 @@ function MapGen(){
                 map[randMapY][randMapX] = 1;
                 playerSpawnCount++;
                 totalEntityCount++;
-                player = new Player(randMapX, randMapY);
+                player = new classes.Player(randMapX, randMapY);
             }
             else
             {
