@@ -17,17 +17,19 @@ function init(){
 	
 	ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 	
+	let form = document.querySelector("#controls");
 	outputWindow = document.querySelector("#outputWindow");
 	inputWindow = document.querySelector("#playerInput");
 	submit = document.querySelector("#submit");
 	
-	inputWindow.addEventListener("keyup", function (e) {
+	inputWindow.addEventListener("keypress", function (e) {
 		if (e.keyCode == 13){
 			e.stopPropagation();
 			e.preventDefault();
 			submit.click();
 		}
 	})
+
 	submit.onclick = update;
 	
 	outputWindow.innerHTML = utils.updateUI(`Welcome to Hunt the Wumpus! You are the green circle. Navigate through the cave by typing directions ("right", "left", "up", "down") into the text field below then pressing enter. Escape the cave with the treasure while avoiding the Wumpus.`, outputWindow.innerHTML);
