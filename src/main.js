@@ -36,6 +36,10 @@ function init(){
 	
 	data.MapGen();
 	utils.drawGrid(ctx, data.map, data.player);
+	// Check surroundings upon start
+	if (utils.getProximity(data.map, data.player).length != 0){
+		outputWindow.innerHTML = utils.updateUI(utils.checkProximity(utils.getProximity(data.map, data.player)), outputWindow.innerHTML);
+	}
 	data.checkMap();
 }
 
@@ -49,12 +53,18 @@ function update(){
 			if (utils.checkMovement(data.map, data.player, 0)){
 				data.player.x++;
 				if (data.map[data.player.y][data.player.x] == 0) data.map[data.player.y][data.player.x] = 1;
+				
 				utils.drawGrid(ctx, data.map, data.player);
+				
+				if (utils.getProximity(data.map, data.player).length != 0){
+					outputWindow.innerHTML = utils.updateUI(utils.checkProximity(utils.getProximity(data.map, data.player)), outputWindow.innerHTML);
+				}
+//				let str = utils.checkMovement(utils.getProximity(data.map, data.player));
+//				let result = str.fontcolor("red");
+//				outputWindow.innerHTML = `${result}<br/>${outputWindow.innerHTML}`;
 			}
 			else {
-				let str = "This is not a valid move";
-				let result = str.fontcolor("red");
-				outputWindow.innerHTML = `${result}<br/>${outputWindow.innerHTML}`
+				outputWindow.innerHTML = utils.updateUI("This is not a valid move", outputWindow.innerHTML);
 			}
 			break;
 		// Left
@@ -64,11 +74,13 @@ function update(){
 				if (data.map[data.player.y][data.player.x] == 0) data.map[data.player.y][data.player.x] = 1;
 
 				utils.drawGrid(ctx, data.map, data.player);
+				
+				if (utils.getProximity(data.map, data.player).length != 0){
+					outputWindow.innerHTML = utils.updateUI(utils.checkProximity(utils.getProximity(data.map, data.player)), outputWindow.innerHTML);
+				}
 			}
 			else {
-				let str = "This is not a valid move";
-				let result = str.fontcolor("red");
-				outputWindow.innerHTML = `${result}<br/>${outputWindow.innerHTML}`
+				outputWindow.innerHTML = utils.updateUI("This is not a valid move", outputWindow.innerHTML);
 			}
 			break;
 		// Up
@@ -78,11 +90,14 @@ function update(){
 				if (data.map[data.player.y][data.player.x] == 0) data.map[data.player.y][data.player.x] = 1;
 
 				utils.drawGrid(ctx, data.map, data.player);
+				
+				if (utils.getProximity(data.map, data.player).length != 0){
+					outputWindow.innerHTML = utils.updateUI(utils.checkProximity(utils.getProximity(data.map, data.player)), outputWindow.innerHTML);
+				}
+
 			}
 			else {
-				let str = "This is not a valid move";
-				let result = str.fontcolor("red");
-				outputWindow.innerHTML = `${result}<br/>${outputWindow.innerHTML}`
+				outputWindow.innerHTML = utils.updateUI("This is not a valid move", outputWindow.innerHTML);
 			}
 			break;
 		// Down
@@ -90,12 +105,16 @@ function update(){
 			if (utils.checkMovement(data.map, data.player, 3)){
 				data.player.y++;
 				if (data.map[data.player.y][data.player.x] == 0) data.map[data.player.y][data.player.x] = 1;
+				
 				utils.drawGrid(ctx, data.map, data.player);
+				
+				if (utils.getProximity(data.map, data.player).length != 0){
+					outputWindow.innerHTML = utils.updateUI(utils.checkProximity(utils.getProximity(data.map, data.player)), outputWindow.innerHTML);
+				}
+
 			}
 			else {
-				let str = "This is not a valid move";
-				let result = str.fontcolor("red");
-				outputWindow.innerHTML = `${result}<br/>${outputWindow.innerHTML}`
+				outputWindow.innerHTML = utils.updateUI("This is not a valid move", outputWindow.innerHTML);
 			}
 			break;
 		default:
@@ -108,7 +127,7 @@ function updateUI(){
 	output = inputWindow.value;
 	
 	if (utils.validateInput(output)){
-		outputWindow.innerHTML = `${output}<br/>${outputWindow.innerHTML}`;
+		outputWindow.innerHTML = `${output.trim()}<br/>${outputWindow.innerHTML}`;
 		inputWindow.value = null;
 		direction = utils.checkInput(output);
 	}
