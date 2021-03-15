@@ -148,7 +148,7 @@ function drawGrid(ctx, map, player){
 		for (let j = 1; j < mapX; j++){
 			// Player
 			if (map[i][j] == 1){
-				drawRect(ctx, (j - 1) * 40, (i - 1) * 40, 40, 40, "white");
+				drawRect(ctx, (j - 1) * 40, (i - 1) * 40, 40, 40, "grey");
 			}
 			// Wumpus
 			else if (map[i][j] == 2){
