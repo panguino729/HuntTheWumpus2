@@ -1,21 +1,22 @@
 let audioElement = document.getElementById("audioSource");
 let audioCtx;
-let analyser;
-let source;
+let analyserNode;
+let sourceNode;
+let gainNode;
 let data;
 
 function AudioSetup(){
     audioCtx = new AudioContext();
-    analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 2048;
-    source = audioCtx.createMediaElementSource(audioElement);
+    analyserNode = audioCtx.createAnalyser();
+    analyserNode.fftSize = 2048;
+    sourceNode = audioCtx.createMediaElementSource(audioElement);
 
 
-    source.connect(analyser);
+    sourceNode.connect(analyser);
     //this connects our music back to the default output, such as your //speakers 
-    source.connect(audioCtx.destination);
+    sourceNode.connect(audioCtx.destination);
 
-    data = new Uint8Array(analyser.frequencyBinCount);
+    data = new Uint8Array(analyserNode.frequencyBinCount);
 
 
     audioCtx.resume();
@@ -24,7 +25,7 @@ function AudioSetup(){
 
 function AudioFunction(){
     requestAnimationFrame(AudioFunction);
-    analyser.getByteFrequencyData(data); //passing our Uint data array
+    analyserNode.getByteFrequencyData(data); //passing our Uint data array
     draw(data);
 }
 
