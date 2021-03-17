@@ -201,4 +201,16 @@ function drawCircle(ctx, x, y, radius = 20, startAngle = 0, endAngle = Math.PI *
 	ctx.restore();
 }
 
-export {validateInput, updateUI, drawGrid, checkInput, checkMovement, getProximity, checkProximity};
+const getLinearGradient = (ctx,startX,startY,endX,endY,colorStops) => {
+    let lg = ctx.createLinearGradient(startX,startY,endX,endY);
+    for(let stop of colorStops){
+      lg.addColorStop(stop.percent,stop.color);
+    }
+    return lg;
+};
+
+const makeColor = (red, green, blue, alpha = 1) => {
+    return `rgba(${red},${green},${blue},${alpha})`;
+};
+
+export {validateInput, updateUI, drawGrid, checkInput, checkMovement, getProximity, checkProximity, getLinearGradient, makeColor};
