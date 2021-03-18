@@ -64,7 +64,7 @@ function checkMovement(map, player, direction){
 	}
 }
 
-// This is only checking within 1 block, needs to be changed to 2(?)
+// This is only checking within 1 block
 // Y first than X
 function getProximity(map, player){
 	let proximity = [];
@@ -104,6 +104,7 @@ function getProximity(map, player){
 	return proximity;
 }
 
+// Pass on string to player for proximity
 function checkProximity(proximity){
 	let str = "";
 	if (proximity.length == 0) return false;
@@ -149,27 +150,28 @@ function drawGrid(ctx, map, player){
 	for (let i = 1; i < mapY; i++){
 		// column
 		for (let j = 1; j < mapX; j++){
+			//-----Change colors when player on top-----
 			// Player
 			if (map[i][j] == 1){
 				drawRect(ctx, (j - 1) * 40, (i - 1) * 40, 40, 40, "grey");
 			}
 			// Wumpus
-			else if (map[i][j] == 2){
+			else if (map[i][j] == 7){
 				drawRect(ctx, (j - 1) * 40, (i - 1) * 40, 40, 40, "red");
 			}
 			// Treasure
-			else if (map[i][j] == 3){
+			else if (map[i][j] == 8){
 				drawRect(ctx, (j - 1) * 40, (i - 1) * 40, 40, 40, "yellow");
 			}
 			// Pit
-			else if (map[i][j] == 4){
+			else if (map[i][j] == 9){
 				drawRect(ctx, (j - 1) * 40, (i - 1) * 40, 40, 40, "blue");
 			}
 			// Bats
-			else if (map[i][j] == 5){
+			else if (map[i][j] == 10){
 				drawRect(ctx, (j - 1) * 40, (i - 1) * 40, 40, 40, "purple");
 			}
-			else if (map[i][j] == 6){
+			else if (map[i][j] == 11){
 				drawRect(ctx, (j - 1) * 40, (i - 1) * 40, 40, 40, "white")
 			}
 			else{

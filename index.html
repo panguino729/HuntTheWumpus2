@@ -1,42 +1,57 @@
 <!DOCTYPE html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>Hunt the Wumpus 2</title>
-		<script type="module" src="./src/loader.js"></script>
-		<style>
-			button[data-playing="yes"]:after{
+<head>
+	<meta charset="UTF-8">
+	<title>Hunt the Wumpus 2</title>
+	<script type="module" src="./src/loader.js"></script>
+	<style>
+		button[data-playing="yes"]:after{
 			content: "Pause Sound";
-			}
-
-			button[data-playing="no"]:after{
+		}
+		
+		button[data-playing="no"]:after{
 			content: "Play Sound";
-			}
-		</style>
-		<link rel="stylesheet" type="text/css" href="./css/default-styles.css">
-	</head>
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="./css/default-styles.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
 	<header>
 		<h1 id="gameName">Hunt the Wumpus 2</h1>
 	</header>
-	<body>
-		<canvas id="mainCanvas">Your browser does not support Canvas, try another.</canvas>
-		<h2 style="text-align:center">Wump-O-Meter</h2>
-		<canvas id="audioCanvas">Your browser does not support Canvas, try another.</canvas>
+	<main>
+<!--		Code from https://coder-coder.com/display-divs-side-by-side/-->
+		<div class="grid-container" id="canvases">
+			<div class="grid-child" id="gameCanvas">
+				<canvas id="mainCanvas">Your browser does not support Canvas, try another.</canvas>
+			</div>
+			<div class="grid-child" id="supportCanvas">
+				<h2 style="text-align:center">Wump-O-Meter</h2>
+				<canvas id="audioCanvas">Your browser does not support Canvas, try another.</canvas>
+			</div>
+		</div>
+<!--		End borrowed code-->
 		
 		<div id="outputWindow">
-<!--			This is where the game output goes-->
+			<!--			This is where the game output goes-->
 			<audio id="audioSource" src="/audio/SnoringWumpus.mp3"></audio>
 		</div>
 		
 		<div id="inputWindow">
 			<form id="controls">
-				<!-- <label for="playerInput">Player input:</label><br>
-				<input type="texts" id="playerInput" name = "playerInput"><br> -->
-				<button type="button" id="playPause" data-playing="no"></button>
+				<button type="button" class="btnControls" id="playPause" data-playing="no"></button>
+				<button type="button" class="btnControls" id="restart">Restart Game</button>
 			</form>
 		</div>
-	</body>
+		<div id="instructions">
+			Welcome to Hunt the Wumpus! The goal is to find the treasure, and escape. The Wumpus is sleeping, but if you enter his room, he will awaken. Use the text hints to find your way around, and make sure to listen for the Wumpus snoring. The circle in the Wump-O-Meter will get larger the closer you are to the Wumpus. Please click the 'Play Sound' for this feature to work. You are the green circle. Navigate through the cave using 'W', 'A', 'S', and 'D'. Press 'Restart Game' to play again and generate a new map.
+		</div>
+		
+	</main>
 	<footer>
-		<p>Created by: Sijal Jaradat and Katarina Tretter<br/>Updated: March 9, 2021</p>
+		<p>Created by: Sijal Jaradat and Katarina Tretter<br/>Updated: March 17, 2021</p>
 	</footer>
+</body>
 </html>

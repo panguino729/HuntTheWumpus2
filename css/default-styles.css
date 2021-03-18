@@ -1,3 +1,7 @@
+* {
+	font-family: 'Source Code Pro', monospace;
+}
+
 canvas {
 	padding: 10px;
 	margin-left: auto;
@@ -12,8 +16,25 @@ div {
 	width: 80%;
 }
 
+/*Code from https://coder-coder.com/display-divs-side-by-side/*/
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 20px;
+}
+
 footer {
 	color: grey;
+}
+
+.btnControls {
+	font-size: 20px;
+	transition-duration: 0.3s;
+}
+
+.btnControls:hover {
+	background-color: grey;
+	color: black;
 }
 
 #gameName {
@@ -27,7 +48,7 @@ footer {
 	border: 1px solid grey;
 }
 
-#playerInput {
+#controls {
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
