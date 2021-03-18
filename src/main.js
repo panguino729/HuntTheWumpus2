@@ -75,11 +75,11 @@ function update(){
 	let distance = Math.pow((data.player.x - data.wumpusX),2) + Math.pow((data.player.y - data.wumpusY),2);
 	let sqrDistance = Math.sqrt(distance);
 	let fixDistance = (1/sqrDistance).toFixed(2);
-	console.log(`PlayerX: ${data.player.x}, PlayerY:  ${data.player.y}`);
-	console.log(`WumpusX: ${data.wumpusX}, WumpusY:  ${data.wumpusY}`);
-	console.log(`distance: ${distance}`);
-	console.log(`sqrDistance: ${sqrDistance}`);
-	console.log(`fixDistance: ${fixDistance}`);
+//	console.log(`PlayerX: ${data.player.x}, PlayerY:  ${data.player.y}`);
+//	console.log(`WumpusX: ${data.wumpusX}, WumpusY:  ${data.wumpusY}`);
+//	console.log(`distance: ${distance}`);
+//	console.log(`sqrDistance: ${sqrDistance}`);
+//	console.log(`fixDistance: ${fixDistance}`);
 
 	//console.log(`absDistance: ${absDistance}`);
 	if(sqrDistance == 0){
@@ -96,14 +96,6 @@ function update(){
 
 // Update the output window with the user input
 function updateUI(output, previous){
-	//	output = inputWindow.value;
-	//	
-	//	if (utils.validateInput(output)){
-	//		outputWindow.innerHTML = `${output.trim()}<br/>${outputWindow.innerHTML}`;
-	//		inputWindow.value = null;
-	//		direction = utils.checkInput(output);
-	//	}
-	//	console.log(inputWindow.value);
 	let result = `${output.trim()}<br/>${previous}`;
 	return result;
 }
@@ -260,6 +252,7 @@ function checkCurrent(map, player, previous){
 			gameRun = false;
 			break;
 		default:
+			str = previous;
 			break;
 	}
 	

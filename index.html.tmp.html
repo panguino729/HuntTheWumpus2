@@ -4,13 +4,24 @@
 		<meta charset="UTF-8">
 		<title>Hunt the Wumpus 2</title>
 		<script type="module" src="./src/loader.js"></script>
+		<style>
+			button[data-playing="yes"]:after{
+			content: "Pause Sound";
+			}
+
+			button[data-playing="no"]:after{
+			content: "Play Sound";
+			}
+		</style>
 		<link rel="stylesheet" type="text/css" href="./css/default-styles.css">
 	</head>
 	<header>
 		<h1 id="gameName">Hunt the Wumpus 2</h1>
 	</header>
 	<body>
-		<canvas>Your browser does not support Canvas, try another.</canvas>
+		<canvas id="mainCanvas">Your browser does not support Canvas, try another.</canvas>
+		<h2 style="text-align:center">Wump-O-Meter</h2>
+		<canvas id="audioCanvas">Your browser does not support Canvas, try another.</canvas>
 		
 		<div id="outputWindow">
 <!--			This is where the game output goes-->
@@ -18,10 +29,10 @@
 		</div>
 		
 		<div id="inputWindow">
-			<form id="contsrols">
+			<form id="controls">
 				<!-- <label for="playerInput">Player input:</label><br>
-				<input type="texts" id="playerInput" name = "playerInput"><br>
-				<button type="button" id="submit">Enter</button> -->
+				<input type="texts" id="playerInput" name = "playerInput"><br> -->
+				<button type="button" id="playPause" data-playing="no"></button>
 			</form>
 		</div>
 	</body>
