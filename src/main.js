@@ -274,10 +274,23 @@ function checkCurrent(map, player, previous){
 				map[player.y][player.x] = 11;
 				break;
 			}
+
+			case 11:
+			if(treasureGot){
+				str = utils.updateUI(`You found the exit. You are safe!`, previous);
+				gameRun = false;
+				break;
+			}
+			else
+			{
+				str = utils.updateUI(`You found the exit. Now go find the treasure!`, previous);
+				break;
+			}
 			
 		default:
 			str = previous;
 			break;
+		
 	}
 	
 	return str;
