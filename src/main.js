@@ -5,7 +5,6 @@ import * as audioCanvas from "./audioCanvas.js";
 
 let ctx, canvas, aCtx, aCanvas;
 const canvasWidth = 600, canvasHeight = 400;
-const aCanvasWidth = 100, aCanvasHeight = 100;
 
 let outputWindow, inputWindow, output, input;
 let submit;
@@ -66,12 +65,14 @@ function update(){
 	//console.log(`absDistance: ${absDistance}`);
 	if(sqrDistance == 0){
 		audio.setVolume(1);
+		audioCanvas.draw(1);
 	}
 	else{
 		audio.setVolume(fixDistance);
+		audioCanvas.draw(fixDistance);
 	}
 
-	audioCanvas.draw(sqrDistance.toFixed(2));
+	
 }
 
 // Update the output window with the user input

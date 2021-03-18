@@ -39,7 +39,7 @@ function draw(distance){
     ctx.restore();
 	
 	// 5 - draw circles
-    let maxRadius = canvasHeight/4;
+    let maxRadius = canvasHeight*distance;
     ctx.save();
     ctx.globalAlpha = 0.5;
     for(let i=0; i<audioData.length;i++){
