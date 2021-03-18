@@ -45,6 +45,8 @@ function init(){
 	
 	restartButton.onclick = function() {
 		data.restart();
+		gameRun = true;
+		treasureGot = false;
 		utils.drawGrid(ctx, data.map, data.player);
 		outputWindow.innerHTML = "";
 	}
@@ -260,10 +262,19 @@ function checkCurrent(map, player, previous){
 			gameRun = false;
 			break;
 		case 6:
-			str = utils.updateUI(`You found the exit. You are safe!`, previous);
-			map[player.y][player.x] = 11;
-			gameRun = false;
-			break;
+			if(treasureGot){
+				str = utils.updateUI(`You found the exit. You are safe!`, previous);
+				map[player.y][player.x] = 11;
+				gameRun = false;
+				break;
+			}
+			else
+			{
+				str = utils.updateUI(`You found the exit. Now go find the treasure!`, previous);
+				map[player.y][player.x] = 11;
+				break;
+			}
+			
 		default:
 			str = previous;
 			break;

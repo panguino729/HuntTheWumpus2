@@ -8,6 +8,8 @@ import * as classes from "./classes.js";
 // 3 = Treasure
 // 4 = Pit
 // 5 = Bat
+// 6 = Exit
+// 7 = 
 
 let playerSpawnCount = 0;
 const playerSpawnMax = 1;

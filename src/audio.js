@@ -29,6 +29,7 @@ function setupWebaudio(filePath){
 
     // 4 - create an a source node that points at the <audio> element
     sourceNode = audioCtx.createMediaElementSource(element);
+    sourceNode.loop = true;
 
     // 5 - create an analyser node
     analyserNode = audioCtx.createAnalyser(); // note the UK spelling of "Analyser"
