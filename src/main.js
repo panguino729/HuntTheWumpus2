@@ -46,7 +46,26 @@ function init(){
 		outputWindow.innerHTML = utils.updateUI(utils.checkProximity(utils.getProximity(data.map, data.player)), outputWindow.innerHTML);
 	}
 
-	audio.playCurrentSound();
+	let playButton = document.querySelector("#playPause");
+
+	playButton.onclick = e =>{
+		// check if context is in suspended state (autoplay policy)
+		if (audio.audioCtx.state == "suspended") {
+			audio.audioCtx.resume();
+		}
+		console.log(`audioCtx.state after = ${audio.audioCtx.state}`);
+		if (e.target.dataset.playing == "no"){
+			// if track is currently paused, play it
+			audio.playCurrentSound();
+			e.target.dataset.playing = "yes"; // our CSS will set the text to "Pause"
+			// if track IS playing, pause it
+		}else{
+			audio.pauseCurrentSound();
+			e.target.dataset.playing = "no"; // our CSS will set the text to "Play"
+		}
+	};
+
+	//audio.playCurrentSound();
 	data.checkMap();
 	update();
 }
@@ -98,6 +117,10 @@ function doKeyDown(e){
 	
 	//The W Key -- Up
 	if ( e.keyCode == 87 ) {
+		// check if context is in suspended state (autoplay policy)
+		if (audio.audioCtx.state == "suspended") {
+			audio.audioCtx.resume();
+		}
 		if (data.player.y - 1 < 1){
 			outputWindow.innerHTML = utils.updateUI("This is not a valid move", outputWindow.innerHTML);
 		}
@@ -123,6 +146,10 @@ function doKeyDown(e){
 	
 	//The S Key -- Down
 	if ( e.keyCode == 83 ) {
+		// check if context is in suspended state (autoplay policy)
+		if (audio.audioCtx.state == "suspended") {
+			audio.audioCtx.resume();
+		}
 		if (data.player.y + 1 >= mapY){
 			outputWindow.innerHTML = utils.updateUI("This is not a valid move", outputWindow.innerHTML);
 		}
@@ -149,6 +176,10 @@ function doKeyDown(e){
 	
 	//The A Key -- Left
 	if ( e.keyCode == 65 ) {
+		// check if context is in suspended state (autoplay policy)
+		if (audio.audioCtx.state == "suspended") {
+			audio.audioCtx.resume();
+		}
 		if (data.player.x - 1 < 1){
 			outputWindow.innerHTML = utils.updateUI("This is not a valid move", outputWindow.innerHTML);
 		}
@@ -175,6 +206,10 @@ function doKeyDown(e){
 	
 	//The D Key -- Right
 	if ( e.keyCode == 68 ) {
+		// check if context is in suspended state (autoplay policy)
+		if (audio.audioCtx.state == "suspended") {
+			audio.audioCtx.resume();
+		}
 		if (data.player.x + 1 >= mapX){
 			outputWindow.innerHTML = utils.updateUI("This is not a valid move", outputWindow.innerHTML);
 		}
