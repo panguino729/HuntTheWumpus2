@@ -24,8 +24,11 @@ const pitSpawnMax = 0;
 let batSpawnCount = 0;
 const batSpawnMax = 0;
 
+let exitSpawnCount = 0;
+const exitSpawnMax = 1;
+
 let totalEntityCount = 0;
-const maxEntityCount = playerSpawnMax + wumpusSpawnMax + treasureSpawnMax + pitSpawnMax + batSpawnMax; 
+const maxEntityCount = playerSpawnMax + wumpusSpawnMax + treasureSpawnMax + pitSpawnMax + batSpawnMax + exitSpawnMax; 
 
 let mapX = 15;
 let mapY = 10;
@@ -79,7 +82,7 @@ function MapGen(){
         else if(map[randMapY][randMapX] == 0 && totalEntityCount < maxEntityCount)
         {
             // Player
-            if(playerSpawnCount < playerSpawnMax)
+            if (playerSpawnCount < playerSpawnMax)
             {
                 map[randMapY][randMapX] = 1;
                 playerSpawnCount++;
@@ -89,7 +92,7 @@ function MapGen(){
             else
             {
                 // Wumpus
-                if(wumpusSpawnCount < wumpusSpawnMax)
+                if (wumpusSpawnCount < wumpusSpawnMax)
                 {
                     map[randMapY][randMapX] = 2;
                     wumpusSpawnCount++;
@@ -98,7 +101,7 @@ function MapGen(){
                 else
                 {
                     // Treasure
-                    if(treasureSpawnCount < treasureSpawnMax)
+                    if (treasureSpawnCount < treasureSpawnMax)
                     {
                         map[randMapY][randMapX] = 3;
                         treasureSpawnCount++;
@@ -107,7 +110,7 @@ function MapGen(){
                     else
                     {
                         // Pit
-                        if(pitSpawnCount < pitSpawnMax)
+                        if (pitSpawnCount < pitSpawnMax)
                         {
                             map[randMapY][randMapX] = 4;
                             pitSpawnCount++;
@@ -116,7 +119,7 @@ function MapGen(){
                         else
                         {
                             // Bats
-                            if(batSpawnCount < batSpawnMax)
+                            if (batSpawnCount < batSpawnMax)
                             {
                                 map[randMapY][randMapX] = 5;
                                 batSpawnCount++;
@@ -124,7 +127,14 @@ function MapGen(){
                             }
                             else
                             {
-                                //Do nothing, the map is full
+                                if (exitSpawnCount < exitSpawnMax){
+                                    map[randMapY][randMapX] = 6;
+                                    exitSpawnCount++;
+                                    totalEntityCount++;
+                                }
+                                else{
+                                    //Do nothing, the map is full
+                                }
                             }
                         }
                     }

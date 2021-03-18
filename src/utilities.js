@@ -60,7 +60,7 @@ function checkMovement(map, player, direction){
 			break;
 		default:
 			return true;
-			break;
+		break;
 	}
 }
 
@@ -123,6 +123,9 @@ function checkProximity(proximity){
 			case 5:
 				str = `You hear wings flapping. ${str}`;
 				break;
+			case 6:
+				str = `You feel a gentle breeze nearby. ${str}`;
+				break;
 			default:
 				break;
 		}
@@ -134,7 +137,7 @@ function checkProximity(proximity){
 // Takes in new string to concat to previous, used for Game Text
 function updateUI(output, previous){
 	let str = output.fontcolor("red");
-	let result = `${str}<br/>${previous}`
+	let result = `${str}<br/>${previous}`;
 	return result;
 }
 
@@ -166,13 +169,16 @@ function drawGrid(ctx, map, player){
 			else if (map[i][j] == 5){
 				drawRect(ctx, (j - 1) * 40, (i - 1) * 40, 40, 40, "purple");
 			}
+			else if (map[i][j] == 6){
+				drawRect(ctx, (j - 1) * 40, (i - 1) * 40, 40, 40, "white")
+			}
 			else{
 				drawRect(ctx, (j - 1) * 40, (i - 1) * 40, 40, 40, "black");
 			}
 		}
 	}
 	
-	drawCircle(ctx, (player.x - 1) * 40, (player.y - 1) * 40);
+	drawCircle(ctx, (player.x - 1) * 40 + 5, (player.y - 1) * 40 + 5, 15); // center of circle = 20 - radius
 }
 
 function drawRect(ctx, x, y, width = 40, height = 40, color = "black", strokeStyle = "none"){
@@ -189,7 +195,7 @@ function drawRect(ctx, x, y, width = 40, height = 40, color = "black", strokeSty
 	ctx.closePath();
 	ctx.restore();
 }
-		
+
 function drawCircle(ctx, x, y, radius = 20, startAngle = 0, endAngle = Math.PI * 2, fillStyle = "green"){
 	ctx.save();
 	ctx.fillStyle = fillStyle;
@@ -202,15 +208,15 @@ function drawCircle(ctx, x, y, radius = 20, startAngle = 0, endAngle = Math.PI *
 }
 
 const getLinearGradient = (ctx,startX,startY,endX,endY,colorStops) => {
-    let lg = ctx.createLinearGradient(startX,startY,endX,endY);
-    for(let stop of colorStops){
-      lg.addColorStop(stop.percent,stop.color);
-    }
-    return lg;
+	let lg = ctx.createLinearGradient(startX,startY,endX,endY);
+	for(let stop of colorStops){
+		lg.addColorStop(stop.percent,stop.color);
+	}
+	return lg;
 };
 
 const makeColor = (red, green, blue, alpha = 1) => {
-    return `rgba(${red},${green},${blue},${alpha})`;
+	return `rgba(${red},${green},${blue},${alpha})`;
 };
 
 export {validateInput, updateUI, drawGrid, checkInput, checkMovement, getProximity, checkProximity, getLinearGradient, makeColor};
