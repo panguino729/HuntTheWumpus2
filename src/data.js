@@ -15,6 +15,9 @@ const playerSpawnMax = 1;
 let wumpusSpawnCount = 0;
 const wumpusSpawnMax = 1;
 
+let wumpusX;
+let wumpusY;
+
 let treasureSpawnCount = 0;
 const treasureSpawnMax = 1;
 
@@ -95,6 +98,8 @@ function MapGen(){
                 if (wumpusSpawnCount < wumpusSpawnMax)
                 {
                     map[randMapY][randMapX] = 2;
+                    wumpusX = randMapX;
+                    wumpusY = randMapY;
                     wumpusSpawnCount++;
                     totalEntityCount++;
                 }
@@ -148,4 +153,4 @@ function MapGen(){
     }
 };
 
-export {MapGen, checkMap, mapX, mapY, map, player};
+export {MapGen, checkMap, mapX, mapY, map, player, wumpusX, wumpusY};
